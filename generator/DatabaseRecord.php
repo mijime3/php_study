@@ -17,6 +17,9 @@ class ItemRepository {
         }
     }
 
+    // 呼び出し元に対してPDO関連のオブジェクトが完全に隠蔽されるので、疎な関係が保たれて良い
+    // 呼び出し元で `$stmt->fetch()` とするとPDO依存になる
+    // `$stmt` をこのクラスで保持するような作りは、状態が増えるし煩雑
     public function gene()
     {
         $stmt = $this->pdo->query("SELECT * FROM items");
